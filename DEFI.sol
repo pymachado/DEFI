@@ -2,7 +2,7 @@
 /**
     @author Pedro Machado.
     @title DEFI Library.
-    @notice Library based on ABDKMath64x64 library to calculate some financing variables. It is based in time not in block. 
+    @notice Library based on ABDKMath64x64 library to calculate some financing variables. It is based in time not in block.
 */
 
 pragma solidity ^0.8.0;
@@ -11,7 +11,7 @@ import "./ABDKMath64x64";
 library DEFI {
 
 
-function _compoundReward(uint amount, int128 mir, int128 stakePeriod) private pure returns(uint) {
+function _compoundReward(uint amount, uint stakePeriod, int128 mir) private pure returns(uint) {
     return ABDKMath64x64.mulu(_compoundRatio(mir, stakePeriod), amount);
 } 
 
