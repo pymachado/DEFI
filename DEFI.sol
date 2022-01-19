@@ -8,8 +8,14 @@
 pragma solidity ^0.8.0;
 
 import "./ABDKMath64x64";
+import "./SafeMath";
 library DEFI {
+    using SafeMath for uint256;
 
+
+function _yield(uint amount, uint stakePeriod, int128 mir) private pure returns(uint) {
+    return amount.add(_compoundReward(amount, stakePeriod, mir));
+}
 
 function _compoundReward(uint amount, uint stakePeriod, int128 mir) private pure returns(uint) {
     return ABDKMath64x64.mulu(_compoundRatio(mir, stakePeriod), amount);
